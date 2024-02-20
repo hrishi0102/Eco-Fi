@@ -25,8 +25,8 @@ import {
   WELLCOIN_ADDRESS,
 } from "../const/addresses";
 import { ClaimAngel } from "../components/ClaimAngel";
-import { Donations } from "../components/Donations";
-import { Equipped } from "../components/Equipped";
+import { Donated } from "../components/Donated";
+import { Staked } from "../components/Staked";
 import { BigNumber, ethers } from "ethers";
 
 const Home: NextPage = () => {
@@ -88,9 +88,9 @@ const Home: NextPage = () => {
 
   return (
     <Container maxWidth={"1200px"}>
-      <SimpleGrid column={2} spacing={10}>
-        <Card>
-          <SimpleGrid column={2} spacing={10}>
+      <SimpleGrid columns={2} spacing={10}>
+        <Card p={5}>
+          <SimpleGrid columns={2} spacing={10}>
             <Box>
               {ownedAngels?.map((nft) => (
                 <div key={nft.metadata.id}>
@@ -106,24 +106,27 @@ const Home: NextPage = () => {
               <Text fontSize={"medium"} fontWeight={"bold"}>
                 $ECO Balance:{" "}
               </Text>
-              <p>{ethers.utils.formatUnits(rewardBalance, 18)}</p>
+              {rewardBalance && (
+                <p>{ethers.utils.formatUnits(rewardBalance, 18)}</p>
+              )}
             </Box>
           </SimpleGrid>
         </Card>
         <Card p={5}>
           <Heading> Donations :</Heading>
           <Skeleton isLoaded={!loadingOwnedDonations}>
-            <Donations nft={ownedDonations} />
+            <Donated nft={ownedDonations} />
           </Skeleton>
         </Card>
       </SimpleGrid>
       <Card p={5} my={10}>
         <Heading mb={"30px"}>Staked Donations: </Heading>
-        {/* <SimpleGrid columns={3} spacing={10}>
-            {stakedDonations && stakedDonations[0].map((nft: BigNumber) => (
-             <Equipped key={nft.toNumber()} tokenId={nft.toNumber}/>
+        <SimpleGrid columns={3} spacing={10}>
+          {stakedDonations &&
+            stakedDonations[0].map((nft: BigNumber) => (
+              <Staked key={nft.toNumber()} tokenId={nft.toNumber()} />
             ))}
-        </SimpleGrid> */}
+        </SimpleGrid>
       </Card>
     </Container>
   );
