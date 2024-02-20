@@ -10,7 +10,7 @@ const NavBar = () => {
           <Link href={"/"} mx={2}>
             Stake
           </Link>
-          <Link href={"/Donate"} mx={2}>
+          <Link href={"/donate"} mx={2}>
             Donate
           </Link>
         </Flex>
