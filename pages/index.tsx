@@ -16,6 +16,7 @@ import {
   SimpleGrid,
   Card,
   Box,
+  Skeleton,
 } from "@chakra-ui/react";
 import {
   ANGEL_ADDRESS,
@@ -24,7 +25,9 @@ import {
   WELLCOIN_ADDRESS,
 } from "../const/addresses";
 import { ClaimAngel } from "../components/ClaimAngel";
-import { ethers } from "ethers";
+import { Donations } from "../components/Donations";
+import { Equipped } from "../components/Equipped";
+import { BigNumber, ethers } from "ethers";
 
 const Home: NextPage = () => {
   const address = useAddress();
@@ -100,13 +103,28 @@ const Home: NextPage = () => {
               ))}
             </Box>
             <Box>
-              <Text fontSize={"small"} fontWeight={"bold"}>
+              <Text fontSize={"medium"} fontWeight={"bold"}>
                 $ECO Balance:{" "}
               </Text>
+              <p>{ethers.utils.formatUnits(rewardBalance, 18)}</p>
             </Box>
           </SimpleGrid>
         </Card>
+        <Card p={5}>
+          <Heading> Donations :</Heading>
+          <Skeleton isLoaded={!loadingOwnedDonations}>
+            <Donations nft={ownedDonations} />
+          </Skeleton>
+        </Card>
       </SimpleGrid>
+      <Card p={5} my={10}>
+        <Heading mb={"30px"}>Staked Donations: </Heading>
+        {/* <SimpleGrid columns={3} spacing={10}>
+            {stakedDonations && stakedDonations[0].map((nft: BigNumber) => (
+             <Equipped key={nft.toNumber()} tokenId={nft.toNumber}/>
+            ))}
+        </SimpleGrid> */}
+      </Card>
     </Container>
   );
 };
