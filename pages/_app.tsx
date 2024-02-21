@@ -3,7 +3,7 @@ import { ThirdwebProvider } from "@thirdweb-dev/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { PolygonZkevmTestnet } from "@thirdweb-dev/chains";
 import NavBar from "../components/NavBar";
-import theme from "../components/theme";
+import theme from "../components/Theme";
 
 
 // This is the chain your dApp will work on.
