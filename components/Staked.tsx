@@ -16,7 +16,7 @@ import {
   Button,
   Card,
   SimpleGrid,
-  Stack,
+  Stack, // Import Stack component
   Flex,
 } from "@chakra-ui/react";
 
@@ -38,50 +38,53 @@ export const Staked = (props: StakedProps) => {
   );
 
   return (
-    <Box>
+    <Flex justifyContent="center">
       {nft && (
-        <Card className={styles.stakecontainer} p={5}>
-          <Flex>
+        <Box className={styles.stakecontainer} p={5} border="2px solid #ccc" borderRadius="lg">
+          <Flex flexDirection="column" alignItems="center" textAlign="center">
             <Box>
               <MediaRenderer
                 src={nft.metadata.image}
-                height="80%"
-                width="80%"
+                height="100%"
+                width="100%"
               />
-            </Box>
-            <Stack spacing={1}>
-              <Text fontSize={"2xl"} fontWeight={"bold"}>
+              <Text fontSize="2xl" fontWeight="bold">
                 {nft.metadata.name}
               </Text>
-              <Text fontSize={"2xl"} fontWeight={"bold"}>
+              <Text fontSize="medium" fontWeight="bold">
                 Staked: {ethers.utils.formatUnits(claimableRewards[0], 0)}
               </Text>
-              <Web3Button
-                contractAddress={STAKING_ADDRESS}
-                action={(contract) =>
-                  contract.call("withdraw", [props.tokenId, 1])
-                }
-                className={styles.unstakebutton}
-              >
-                Unstake
-              </Web3Button>
-            </Stack>
+            </Box>
+            <Box mt={5}>
+              <Text fontSize="medium" fontWeight="bold">
+                Claimable $ECO:{" "}
+              </Text>
+              <Text my={"5px"}>
+                {ethers.utils.formatUnits(claimableRewards[1], 18)}
+              </Text>
+              <Stack direction="column" spacing={4}> {/* Use Stack component */}
+                <Web3Button
+                  contractAddress={STAKING_ADDRESS}
+                  action={(contract) =>
+                    contract.call("claimRewards", [props.tokenId])
+                  }
+                >
+                  Claim $ECO
+                </Web3Button>
+                <Web3Button
+                  contractAddress={STAKING_ADDRESS}
+                  action={(contract) =>
+                    contract.call("withdraw", [props.tokenId, 1])
+                  }
+                  className={styles.unstakebutton}
+                >
+                  Unstake
+                </Web3Button>
+              </Stack>
+            </Box>
           </Flex>
-          <Box mt={5}>
-            <Text>Claimable $ECO: </Text>
-            <Text>{ethers.utils.formatUnits(claimableRewards[1], 18)}</Text>
-            <Web3Button
-              contractAddress={STAKING_ADDRESS}
-              action={(contract) =>
-                contract.call("claimRewards", [props.tokenId])
-              }
-            >
-              {" "}
-              Claim $ECO{" "}
-            </Web3Button>
-          </Box>
-        </Card>
+        </Box>
       )}
-    </Box>
+    </Flex>
   );
 };
