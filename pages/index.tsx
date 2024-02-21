@@ -57,12 +57,12 @@ const Home: NextPage = () => {
   if (!address) {
     return (
       <Container>
-        <Flex direction={"column"} h={"100vh"} justifyContent={"center"}>
-          <Heading my={"40px"}>Eco-Fi</Heading>
-          <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
-            EcoFI merges DeFi with environmental stewardship, allowing users to
-            stake NFTs for ERC-20 rewards, driving tangible sustainability
-            through every transaction.
+        <Flex direction={"column"} h={"100vh"} justifyContent={"flex-start"} alignItems={"center"} paddingTop={"20vh"}>
+          <Heading as="h1" size="2xl" textAlign="center" mb={4}>
+            Welcome to Eco-Fi
+          </Heading>
+          <Text mt={4} mb={8} fontSize="xl" fontWeight="semibold" lineHeight="short" textAlign="center">
+            Mint your NFT for free and explore our shop filled with NFTs representing real-world objects aligned with UN Sustainable Development Goals. Every purchase contributes to positive impact projects. Stake your NFTs to earn ERC-20 rewards and increase your impact score!
           </Text>
           <ConnectWallet />
         </Flex>
