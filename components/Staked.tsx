@@ -51,13 +51,17 @@ export const Staked = (props: StakedProps) => {
               <Text fontSize="2xl" fontWeight="bold">
                 {nft.metadata.name}
               </Text>
-              <Text fontSize="2xl" fontWeight="bold">
+              <Text fontSize="medium" fontWeight="bold">
                 Staked: {ethers.utils.formatUnits(claimableRewards[0], 0)}
               </Text>
             </Box>
             <Box mt={5}>
-              <Text>Claimable $ECO: </Text>
-              <Text>{ethers.utils.formatUnits(claimableRewards[1], 18)}</Text>
+              <Text fontSize="medium" fontWeight="bold">
+                Claimable $ECO:{" "}
+              </Text>
+              <Text my={"5px"}>
+                {ethers.utils.formatUnits(claimableRewards[1], 18)}
+              </Text>
               <Web3Button
                 contractAddress={STAKING_ADDRESS}
                 action={(contract) =>
