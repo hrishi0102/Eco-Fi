@@ -16,7 +16,7 @@ import {
   Button,
   Card,
   SimpleGrid,
-  Stack,
+  Stack, // Import Stack component
   Flex,
 } from "@chakra-ui/react";
 
@@ -40,7 +40,7 @@ export const Staked = (props: StakedProps) => {
   return (
     <Flex justifyContent="center">
       {nft && (
-        <Box className={styles.stakecontainer} p={5}>
+        <Box className={styles.stakecontainer} p={5} border="2px solid #ccc" borderRadius="lg">
           <Flex flexDirection="column" alignItems="center" textAlign="center">
             <Box>
               <MediaRenderer
@@ -62,24 +62,25 @@ export const Staked = (props: StakedProps) => {
               <Text my={"5px"}>
                 {ethers.utils.formatUnits(claimableRewards[1], 18)}
               </Text>
-              <Web3Button
-                contractAddress={STAKING_ADDRESS}
-                action={(contract) =>
-                  contract.call("claimRewards", [props.tokenId])
-                }
-              >
-                {" "}
-                Claim $ECO{" "}
-              </Web3Button>
-              <Web3Button
-                contractAddress={STAKING_ADDRESS}
-                action={(contract) =>
-                  contract.call("withdraw", [props.tokenId, 1])
-                }
-                className={styles.unstakebutton}
-              >
-                Unstake
-              </Web3Button>
+              <Stack direction="column" spacing={4}> {/* Use Stack component */}
+                <Web3Button
+                  contractAddress={STAKING_ADDRESS}
+                  action={(contract) =>
+                    contract.call("claimRewards", [props.tokenId])
+                  }
+                >
+                  Claim $ECO
+                </Web3Button>
+                <Web3Button
+                  contractAddress={STAKING_ADDRESS}
+                  action={(contract) =>
+                    contract.call("withdraw", [props.tokenId, 1])
+                  }
+                  className={styles.unstakebutton}
+                >
+                  Unstake
+                </Web3Button>
+              </Stack>
             </Box>
           </Flex>
         </Box>
