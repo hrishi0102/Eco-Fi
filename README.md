@@ -1,4 +1,4 @@
-# Decentralized Application for NFT Staking and UN SDGs Alignment
+# Eco-Fi: Decentralized Application for NFT Staking and UN SDGs Alignment
 
 ## Overview
 
