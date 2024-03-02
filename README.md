@@ -70,7 +70,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact Information
 
-For inquiries and support, please contact [email@example.com](mailto:email@example.com).
+For inquiries and support, please contact [hrishi0102business@gmail.com](mailto:hrishi0102bsuiness@gmail.com).
 
 ## Disclaimer
 
